@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
+        <title>Fun Robotics - Settings</title>
+    </head>
+    <body>
+        <div data-role="page">
+            <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push">
+                <ul id="nav">
+                    <a data-ajax="false" href="index.html">
+                        <li>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><path d="M512,296l-96-96V56h-64v80l-96-96L0,296v16h64v160h160v-96h64v96h160V312h64V296z"/></g></svg>
+                            Home
+                        </li>
+                    </a>
+                    <a data-ajax="false" href="map.html">
+                        <li>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="612px" height="612px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><g><path d="M516.316,337.52l94.233,193.581c3.832,7.873-0.196,14.314-8.952,14.314H10.402c-8.756,0-12.785-6.441-8.952-14.314 L95.684,337.52c1.499-3.079,5.528-5.599,8.952-5.599h80.801c2.49,0,5.853,1.559,7.483,3.442 c5.482,6.335,11.066,12.524,16.634,18.65c5.288,5.815,10.604,11.706,15.878,17.735h-95.891c-3.425,0-7.454,2.519-8.952,5.599 L58.163,505.589h495.67l-62.421-128.242c-1.498-3.08-5.527-5.599-8.953-5.599h-96.108c5.273-6.029,10.591-11.92,15.879-17.735 c5.585-6.144,11.2-12.321,16.695-18.658c1.628-1.878,4.984-3.434,7.47-3.434h80.971 C510.789,331.921,514.817,334.439,516.316,337.52z M444.541,205.228c0,105.776-88.058,125.614-129.472,227.265 c-3.365,8.26-14.994,8.218-18.36-0.04c-37.359-91.651-112.638-116.784-127.041-198.432 c-14.181-80.379,41.471-159.115,122.729-166.796C375.037,59.413,444.541,124.204,444.541,205.228z M379.114,205.228 c0-40.436-32.779-73.216-73.216-73.216s-73.216,32.78-73.216,73.216c0,40.437,32.779,73.216,73.216,73.216 S379.114,245.665,379.114,205.228z"/></g></svg>
+                            Map
+                        </li>
+                    </a>
+                    <a data-ajax="false" href="move.html">
+                        <li>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><g><g id="move"><g><polygon points="18,20 18,26 22,26 16,32 10,26 14,26 14,20"/><polygon points="14,12 14,6 10,6 16,0 22,6 18,6 18,12"/><polygon points="12,18 6,18 6,22 0,16 6,10 6,14 12,14"/><polygon points="20,14 26,14 26,10 32,16 26,22 26,18 20,18"/></g></g></g></svg>
+                            Move Danny
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div data-role="header">
+                <a data-ajax="false" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+                <h1>Fun Robotics - Settings</h1>
+                <a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>
+            </div>
+            <div data-role="content" role="main">
+                <form action="#" id="movef">
+                    <input id="iptxt" type="text" />
+                    <button type="submit">Change</button>
+                </form>
+                <div id="alerts"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-m.js"></script>
+        <script type="text/javascript">
+            var ip = localStorage.getItem("ip");
+            $("#iptxt").val(ip);
+            var count = 0;
+            $("#movef").submit(function(){
+                event.preventDefault();
+                if($("#iptxt").val() != ip) {
+                    ip = $("#iptxt").val();
+                    localStorage.setItem("ip", ip);
+                    count++;
+                    var id = "a-"+count;
+                    $("#alerts").append("<div id='"+id+"' class='alert'>Target IP Address changed!</div>");
+                    $("#"+id).slideDown();
+                    setTimeout(function(){
+                        $("#"+id).slideUp();
+                    },1000);
+                }
+            });
+        </script>
+    </body>
+</html>

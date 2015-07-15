@@ -1,0 +1,130 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ul#home-options {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+ul#home-options li {
+    display: inline-block;
+    background: #ddd;
+    width: 40%;
+    max-width: 200px;
+    padding: 10px;
+    margin: 4%; auto;
+    border-radius: 15%;
+    list-style-type: none;
+    transition: .2s;
+}
+ul#home-options li:hover {
+    background: #eee;
+}
+ul#home-options li svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: green;
+}
+.ui-panel-inner {
+    padding: 0 !important;
+}
+#panel {
+    box-sizing: initial;
+    background: #809bb5;
+}
+ul#nav {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+ul#nav li {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #2c3e50;
+    list-style-type: none;
+    font-size: 1em;
+    transition: .2s;
+    color: #fff;
+}
+ul#nav li:hover {
+    background: #517498;
+}
+ul#nav li svg {
+    display: inline-block;
+    fill: #fff;
+    height: 1em;
+    width: 1em;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+}
+#map {
+    display: block;
+    width:90%;
+    border: 10px solid #ddd;
+    background-color: #ddd;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 46px;
+    margin: 0 auto;
+}
+#movep {
+    display: none;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 3%;
+    overflow: hidden;
+    background: url(../img/antarctica.jpg);
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+.moveb {
+    display: inline-block !important;
+    background: rgba(0,0,0,0) !important;
+    width: 33.33% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+.moveb::before {
+    content: "";
+    display: block;
+    margin-top: 100%;
+}
+.selected {
+    background-image: url(../img/marker.svg) !important;
+    background-color: rgba(238,238,238,0.5) !important;
+    background-position: center !important;
+    background-size: 60% !important;
+    background-repeat: no-repeat !important;
+}
+#loader {
+    display: none;
+    margin: 10px auto;
+    height: 46px;
+    width: 46px;
+    border: 10px solid #ddd;
+    background: #ddd;
+    border-radius: 50%;
+}
+#goto {
+    border:0;
+    height: 1px;
+    width: 1px;
+}
+.alert {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: #addd2c;
+    border-radius: 10px;
+    margin: 10px 0;
+}
