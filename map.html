@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="initial-scale=1.2, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
+        <title>Fun Robotics - Map</title>
+    </head>
+    <body>
+        <div data-role="page">
+            <script type="text/javascript">
+                $("#iptxt").val(localStorage.getItem("ip"));
+                $("#ip").submit(function(){
+                    event.preventDefault();
+                    var size = Math.floor((($("body").width()*9)/10))-20;
+                    $("#map").css({
+                        "height": size+"px",
+                        "width": size+"px",
+                        "background-image": "url(jquery-m/css/images/ajax-loader.gif)"
+                    });
+                    var gimg;
+                    var url = "https://maps.googleapis.com/maps/api/staticmap?zoom=16&size="+size+"x"+size+"&maptype=satellite&markers=color:red%7C";
+                    var jurl = "http://"+$("#iptxt").val()+"/api.php"; 
+                    $.getJSON( jurl, function(japi) {
+                        gimg = url+japi;
+                        $("#map").attr("src",gimg);
+                    });
+                    setInterval(function(){
+                        $.getJSON( jurl, function(japi) {
+                            var gimgnew = url+japi;
+                            if(gimg != gimgnew) {
+                                $("#map").attr("src",gimgnew);
+                                gimg = gimgnew;
+                            }
+                        });
+                    }, 10000);
+                });
+            </script>
+            <div data-role="header">
+                <a data-ajax="true" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+                <h1>Fun Robotics - Map</h1>
+            </div>
+            <div data-role="content" role="main">
+                <form action="#" id="ip">
+                    <input id="iptxt" type="text" disabled />
+                    <button type="submit">Submit</button>
+                </form>
+                <img id="map" />
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-m.js"></script>
+    </body>
+</html>

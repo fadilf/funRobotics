@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="initial-scale=1.2, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
+        <title>Fun Robotics - Move</title>
+    </head>
+    <body>
+        <div data-role="page">
+            <script type="text/javascript">
+                $("#iptxt").val(localStorage.getItem("ip"));
+                var x, y, array;
+                $("#movef").submit(function(){
+                    event.preventDefault();
+                    $("#loader").css( "display", "block" );
+                    var jurl = "http://"+$("#iptxt").val()+"/api2.php";
+                    $.getJSON( jurl, function(japi) {
+                        $("#loader").css( "display", "none" );
+                        $("#movep").slideDown();
+                        $("#data").slideDown();
+                        array = japi.split(",");
+                        x = array[0];
+                        y = array[1];
+                        $(".row:nth-child("+(4-y)+") .moveb:nth-child("+x+")").addClass( "selected" );
+                    });
+                });
+                $(".moveb").click(function(){
+                    $(".selected").removeClass("selected");
+                    $(this).addClass("selected");
+                    x = $(this).attr("x");
+                    y = $(this).attr("y");
+                    $("#goto").attr("src", "http://"+$("#iptxt").val()+"/goto.php?latitude="+x+"&longitude="+y);
+                });
+                $("#data").click(function(){
+
+                });
+            </script>
+            <div data-role="header">
+                <a data-ajax="true" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+                <h1>Fun Robotics - Move</h1>
+            </div>
+            <div data-role="content" role="main">
+                <form action="#" id="movef">
+                    <input id="iptxt" type="text" disabled />
+                    <button type="submit">Submit</button>
+                </form>
+                <img src="css/images/ajax-loader.gif" id="loader" />
+                <div id="movep">
+                    <div class="row">
+                        <button x="1" y="3" class="moveb" type="button"></button><button x="2" y="3" class="moveb" type="button"></button><button x="3" y="3" class="moveb" type="button"></button>
+                    </div>
+                    <div class="row">
+                        <button x="1" y="2" class="moveb" type="button"></button><button x="2" y="2" class="moveb" type="button"></button><button x="3" y="2" class="moveb" type="button"></button>
+                    </div>
+                    <div class="row">
+                        <button x="1" y="1" class="moveb" type="button"></button><button x="2" y="1" class="moveb" type="button"></button><button x="3" y="1" class="moveb" type="button"></button>
+                    </div>
+                </div>
+                <button id="data">Get Data</button>
+                <iframe id="goto" src="about:blank"></iframe>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-m.js"></script>
+    </body>
+</html>

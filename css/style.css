@@ -128,3 +128,8 @@ ul#nav li svg {
     border-radius: 10px;
     margin: 10px 0;
 }
+#data {
+    display: none;
+    margin: 10px;
+    padding: 20px;
+}
