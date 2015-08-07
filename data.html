@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="initial-scale=1.2, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
+        <title>Fun Robotics - Data</title>
+    </head>
+    <body>
+        <div data-role="page">
+            <script type="text/javascript">
+                var ip = localStorage.getItem("ip");
+                $(window).ready(function(){
+                    $("#iptxt").val(ip);
+                });
+                var array = ["unknown","unknown","unknown","unknown","unknown","unknown","unknown","unknown","unknown"];
+                var jurl = "http://"+ip+"/api3.php";
+                var count = 0;
+                var refresh;
+                function convert(v1, v2) {
+                    return (v1-4)+(3*v2);
+                }
+                function start(){
+                    $("#movep").slideDown();
+                    $(".moveb").click(function(){
+                        var x = $(this).attr("x");
+                        var y = $(this).attr("y");
+                        var num = convert(x,y);
+                        var array2 = array[num].split(";");
+                        var k = array2.length;
+                        $("#datapn ul").empty();
+                        if(array2 != "unknown") {
+                            for(var i=0;i<k;i++) {
+                                var array3 = array2[i].split(":");
+                                $("#datapn ul").append("<li><span class='data-h'>"+array3[0]+": </span>"+array3[1]+"</li>");
+                            }
+                        } else {
+                            $("#datapn ul").html("<li><span class='data-h'>No data available yet.</span></li>");
+                        }
+                        $("#hiddena").click();
+                    });
+                    clearInterval(refresh);
+                    refresh = setInterval(function(){
+                        $.getJSON(jurl, function(data){
+                            array = data.split("|");
+                            $(".moveb").each(function(){
+                                var x = $(this).attr("x");
+                                var y = $(this).attr("y");
+                                var num = convert(x,y);
+                                if(array[num] != "unknown") {
+                                    $(this).addClass("green");
+                                }
+                            });
+                        }).success(function(){
+                            count++;
+                            var id = "a-"+count;
+                            $("#alerts").append("<div id='"+id+"' class='alert'>Data refreshed!</div>");
+                            $("#"+id).slideDown();
+                            setTimeout(function(){
+                                $("#"+id).slideUp();
+                            },2000);
+                        });
+                    },15000);
+                }
+            </script>
+            <div data-role="popup" id="datapn"><h2>Data</h2><ul></ul></div>
+            <a href="#datapn" data-rel="popup" id="hiddena"></a>
+            <div id="phead"></div>
+            <div data-role="header">
+                <a data-ajax="true" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+                <h1>Fun Robotics - Data</h1>
+            </div>
+            <div data-role="content" role="main">
+                <input id="iptxt" type="text" disabled />
+                <button onclick="start()" type="button">Submit</button>
+                <div id="movep" class="datap">
+                    <div class="row">
+                        <button x="1" y="3" class="moveb" type="button"></button><button x="2" y="3" class="moveb" type="button"></button><button x="3" y="3" class="moveb" type="button"></button>
+                    </div>
+                    <div class="row">
+                        <button x="1" y="2" class="moveb" type="button"></button><button x="2" y="2" class="moveb" type="button"></button><button x="3" y="2" class="moveb" type="button"></button>
+                    </div>
+                    <div class="row">
+                        <button x="1" y="1" class="moveb" type="button"></button><button x="2" y="1" class="moveb" type="button"></button><button x="3" y="1" class="moveb" type="button"></button>
+                    </div>
+                </div>
+                <div id="alerts"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-m.js"></script>
+    </body>
+</html>

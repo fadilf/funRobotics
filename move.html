@@ -21,7 +21,6 @@
                     $.getJSON( jurl, function(japi) {
                         $("#loader").css( "display", "none" );
                         $("#movep").slideDown();
-                        $("#data").slideDown();
                         array = japi.split(",");
                         x = array[0];
                         y = array[1];
@@ -35,10 +34,8 @@
                     y = $(this).attr("y");
                     $("#goto").attr("src", "http://"+$("#iptxt").val()+"/goto.php?latitude="+x+"&longitude="+y);
                 });
-                $("#data").click(function(){
-
-                });
             </script>
+            <div id="phead"></div>
             <div data-role="header">
                 <a data-ajax="true" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
                 <h1>Fun Robotics - Move</h1>
@@ -60,11 +57,9 @@
                         <button x="1" y="1" class="moveb" type="button"></button><button x="2" y="1" class="moveb" type="button"></button><button x="3" y="1" class="moveb" type="button"></button>
                     </div>
                 </div>
-                <button id="data">Get Data</button>
                 <iframe id="goto" src="about:blank"></iframe>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery-m.js"></script>
     </body>
