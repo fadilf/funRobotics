@@ -17,7 +17,7 @@
                 var count = 0;
                 $("#movef").submit(function(){
                     event.preventDefault();
-                    $("#resetf").attr("url","http://"+ip+"/reset.php?"+count);
+                    $("#resetf").attr("src","http://"+ip+"/reset.php?"+count);
                     count++;
                     var id = "a-"+count;
                     $("#alerts").append("<div id='"+id+"' class='alert'>Data has been reset!</div>");
