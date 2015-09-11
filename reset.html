@@ -7,17 +7,19 @@
         <meta name="viewport" content="initial-scale=1.2, user-scalable=no">
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
-        <title>Fun Robotics - Settings</title>
+        <title>Fun Robotics - Reset</title>
     </head>
     <body>
         <div data-role="page">
             <script type="text/javascript">
                 var ip = localStorage.getItem("ip");
                 $("#iptxt").val(ip);
-                var count = 0;
+                var count = 0, url;
                 $("#movef").submit(function(){
                     event.preventDefault();
-                    $("#resetf").attr("src","http://"+ip+"/reset.php?"+count);
+                    url = "http://"+ip+"/reset.php?"+count;
+                    $("#resetf").attr("src", url);
+                    console.log(url);
                     count++;
                     var id = "a-"+count;
                     $("#alerts").append("<div id='"+id+"' class='alert'>Data has been reset!</div>");
@@ -37,7 +39,7 @@
                     <input id="iptxt" type="text" disabled />
                     <button type="submit">Reset Data</button>
                 </form>
-                <iframe id="resetf">/<iframe>
+                <iframe id="resetf"></iframe>
                 <div id="alerts"></div>
             </div>
         </div>

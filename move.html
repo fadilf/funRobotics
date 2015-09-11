@@ -16,6 +16,7 @@
                 var x, y, array;
                 $("#movef").submit(function(){
                     event.preventDefault();
+                    $(".selected").removeClass("selected");
                     $("#loader").css( "display", "block" );
                     var jurl = "http://"+$("#iptxt").val()+"/api2.php";
                     $.getJSON( jurl, function(japi) {
