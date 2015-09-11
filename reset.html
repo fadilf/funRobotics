@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="initial-scale=1.2, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.min.css" />
+        <title>Fun Robotics - Settings</title>
+    </head>
+    <body>
+        <div data-role="page">
+            <script type="text/javascript">
+                var ip = localStorage.getItem("ip");
+                $("#iptxt").val(ip);
+                var count = 0;
+                $("#movef").submit(function(){
+                    event.preventDefault();
+                    $("#resetf").attr("url","http://"+ip+"/reset.php?"+count);
+                    count++;
+                    var id = "a-"+count;
+                    $("#alerts").append("<div id='"+id+"' class='alert'>Data has been reset!</div>");
+                    $("#"+id).slideDown();
+                    setTimeout(function(){
+                        $("#"+id).slideUp();
+                    },1000);
+                });
+            </script>
+            <div id="phead"></div>
+            <div data-role="header">
+                <a data-ajax="true" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+                <h1>Fun Robotics - Settings</h1>
+            </div>
+            <div data-role="content" role="main">
+                <form action="#" id="movef">
+                    <button type="submit">Reset Data</button>
+                </form>
+                <iframe id="resetf">/<iframe>
+                <div id="alerts"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-m.js"></script>
+    </body>
+</html>

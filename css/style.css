@@ -172,3 +172,10 @@ ul#nav li svg {
 #datapn {
     padding: 10px;
 }
+#resetf {
+  overflow: none;
+  height: 0;
+  width: 0;
+  padding: 0;
+  border: 0;
+}
