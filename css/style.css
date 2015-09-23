@@ -179,3 +179,10 @@ ul#nav li svg {
   padding: 0;
   border: 0;
 }
+.square {
+  height: 18px;
+  width: 18px;
+  border: 1px solid #333;
+  display: inline-block;
+  vertical-align: sub;
+}
