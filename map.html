@@ -22,7 +22,7 @@
                         "background-image": "url(jquery-m/css/images/ajax-loader.gif)"
                     });
                     var gimg;
-                    var url = "https://maps.googleapis.com/maps/api/staticmap?zoom=20&size="+size+"x"+size+"&maptype=satellite&markers=color:red%7C";
+                    var url = "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size="+size+"x"+size+"&maptype=satellite&markers=color:red%7C";
                     var jurl = "http://"+$("#iptxt").val()+"/api.php"; 
                     $.getJSON( jurl, function(japi) {
                         gimg = url+japi;
