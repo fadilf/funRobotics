@@ -249,7 +249,7 @@ ul#nav li svg {
 	font-family: Work Sans;
 	color: #fff;
 }
-.value::after {
+.mvalue::after {
 	content: '%';
 }
 .tbg {
@@ -333,6 +333,7 @@ ul#nav li svg {
 	height: 10px;
 	width: 200px;
 	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
 	transition: 1s;
 }
 .pvalue {
@@ -367,8 +368,15 @@ ul#nav li svg {
 	position: relative;
 	z-index: 10;
 }
-.tbg::after {
-    
+.mtdbg::after {
+    content: "Metals";
+    display: block;
+    font-size: 1.3em;
+}
+.dbg::after {
+    content: "Probability";
+    display: block;
+    font-size: 1.3em;
 }
 @keyframes shake {
 	0% {
