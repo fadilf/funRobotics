@@ -21,7 +21,7 @@
                 var array = ["unknown","unknown","unknown","unknown","unknown","unknown","unknown","unknown","unknown"];
                 var jurl = "http://"+ip+"/api3.php";
                 var count = 0;
-                var refresh;
+                var refresh, nodata;
                 function convert(v1, v2) {
                     return (v1-4)+(3*v2);
                 }
@@ -74,7 +74,11 @@
                                 $("#elements").html("");
                             });
                         } else {
-                            $("#hiddena").click();
+                            clearTimeout(nodata);
+                            $("#hiddenp").addClass("visible");
+                            nodata = setTimeout(function(){
+                                $("#hiddenp").removeClass("visible");
+                            },1000);
                         }
                     });
                     clearInterval(refresh);
@@ -101,9 +105,8 @@
                     },5000);
                 }
             </script>
-            <div data-role="popup" id="datapn"><h2>Data</h2><span class='data-h'>No data available yet.</span></div>
+            <div id="hiddenp"><h2>Data</h2><span class='data-h'>No data available yet.</span></div>
             <div id="datadisplay"><h2>Data</h2><button id="closedisplay">Close</button><div id="elements"></div></div>
-            <a href="#datapn" data-rel="popup" id="hiddena"></a>
             <div id="phead"></div>
             <div data-role="header">
                 <a data-ajax="true" href="index.html" data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
