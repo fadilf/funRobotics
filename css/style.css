@@ -277,6 +277,8 @@ ul#nav li svg {
 	left: 10px;
 }
 .tube {
+	position: relative;
+    z-index: 15;
     box-sizing: content-box;
 	display: block;
 	margin: -60px 150px 0 auto;
