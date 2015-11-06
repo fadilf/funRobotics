@@ -40,12 +40,12 @@
                             for(var i=0;i<k;i++) {
                                 var array3 = array2[i].split(":"), icount = 0;
                                 switch(array3[0]) {
+                                    case "uranium":
+                                        $('<div class="ubg"><div class="uvalue itemv"></div><div class="stick"><div class="innerstick"></div></div></div>').appendTo("#elements");
+                                        $(".ubg .itemv").html(array3[1]);
+                                        break;
                                     case "temperature":
-                                        $('<div class="tbg itembg"><div class="tvalue itemv"></div><div class="therm"><div class="tube"><div class="red"></div></div><div class="bulb"></div></div></div>').appendTo("#elements");
-                                        var tbgt = array3[1];
-                                        setTimeout(function(){
-                                            $(".tbg .red").css("bottom",(tbgt/2)+50+"px");
-                                        },500);
+                                        $('<div class="tbg"><div class="tvalue itemv"></div><div class="therm"><div class="tube"></div><div class="bulb"></div></div></div>').appendTo("#elements");
                                         $(".tbg .itemv").html(array3[1]);
                                         break;
                                     case "magnet":
@@ -53,12 +53,9 @@
                                         $(".mbg .itemv").html(array3[1]);
                                         break;
                                     case "metal":
-                                        $('<div class="mtdbg itembg"><div class="pvalue itemv"></div><div class="dial"><div class="triangle"></div><div class="circle"></div></div></div>').appendTo("#elements");
-                                        var mtbgt = array3[1];
-                                        setTimeout(function(){
-                                            $(".mtdbg .dial").css("transform","rotate("+mtbgt*(180/100)+"deg)");
-                                        },500);
-                                        $(".mtdbg .itemv").html(array3[1]);
+                                        $('<div class="mtbg"><div class="mtvalue itemv"></div><div class="nail"></div></div>').appendTo("#elements");
+                                        if(array3[1] == "1") $(".mtbg .itemv").html("✔");
+                                        else $(".mtbg .itemv").html("✘");
                                         break;
                                     case "probability":
                                         $('<div class="dbg itembg"><div class="pvalue itemv"></div><div class="dial"><div class="triangle"></div><div class="circle"></div></div></div>').appendTo("#elements");
@@ -67,6 +64,14 @@
                                             $(".dbg .dial").css("transform","rotate("+dbgt*(180/100)+"deg)");
                                         },500);
                                         $(".dbg .itemv").html(array3[1]);
+                                        break;
+                                    case "compass":
+                                        $('<div class="cbg"><div class="pvalue itemv"></div><div class="dial"><div class="triangle"></div><div class="circle"></div></div></div>').appendTo("#elements");
+                                        var compass = array3[1];
+                                        setTimeout(function(){
+                                            $(".cbg .dial").css("transform","rotate("+(compass*1+90)+"deg)");
+                                        },500);
+                                        $(".cbg .itemv").html(array3[1]);
                                 }
                             }
                             $("#closedisplay").click(function(){
